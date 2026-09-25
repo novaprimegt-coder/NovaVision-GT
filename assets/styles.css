@@ -5,8 +5,8 @@
   --line:rgba(83,207,255,.18);--line2:rgba(255,255,255,.07);
   --shadow:0 24px 80px rgba(0,0,0,.35);
   --max:1180px;
-  --logo:url('assets/logo.jpg');
-  --banner:url('assets/banner.jpg');
+  --logo:url('logo.jpg');
+  --banner:url('banner.jpg');
 }
 *{box-sizing:border-box;min-width:0}
 html{width:100%;max-width:100%;overflow-x:hidden;scroll-behavior:smooth;background:var(--bg)}
