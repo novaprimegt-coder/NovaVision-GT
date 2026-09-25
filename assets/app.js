@@ -1,26 +1,40 @@
-(()=>{
-  'use strict';
-  const prevent=e=>e.preventDefault();
-  document.addEventListener('contextmenu',prevent,{passive:false});
-  document.addEventListener('copy',prevent,{passive:false});
-  document.addEventListener('cut',prevent,{passive:false});
-  document.addEventListener('dragstart',prevent,{passive:false});
-  document.addEventListener('selectstart',prevent,{passive:false});
-  document.addEventListener('keydown',e=>{
-    const k=e.key.toLowerCase();
-    if((e.ctrlKey||e.metaKey)&&['c','s','u','p','a'].includes(k)) e.preventDefault();
-    if((e.ctrlKey||e.metaKey)&&['+','-','=','0'].includes(k)) e.preventDefault();
-  },{passive:false});
-  document.addEventListener('wheel',e=>{if(e.ctrlKey)e.preventDefault()},{passive:false});
-  ['gesturestart','gesturechange','gestureend'].forEach(ev=>document.addEventListener(ev,prevent,{passive:false}));
-  let lastTouch=0;
-  document.addEventListener('touchend',e=>{const now=Date.now();if(now-lastTouch<=300)e.preventDefault();lastTouch=now},{passive:false});
-  document.querySelectorAll('[style*="data:image"],.brand-logo,.core-logo,.footer-logo').forEach(el=>{
-    el.addEventListener('contextmenu',prevent);el.addEventListener('dragstart',prevent);
+(() => {
+  const progress = document.getElementById('scrollProgress');
+  const updateProgress = () => {
+    const doc = document.documentElement;
+    const max = doc.scrollHeight - innerHeight;
+    const value = max > 0 ? (scrollY / max) * 100 : 0;
+    if (progress) progress.style.width = `${Math.min(100, Math.max(0, value))}%`;
+  };
+  addEventListener('scroll', updateProgress, { passive: true });
+  addEventListener('resize', updateProgress, { passive: true });
+  updateProgress();
+
+  const reveal = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+    reveal.forEach((el) => observer.observe(el));
+  } else {
+    reveal.forEach((el) => el.classList.add('visible'));
+  }
+
+  const stop = (e) => e.preventDefault();
+  ['contextmenu','copy','cut','dragstart'].forEach((type) => document.addEventListener(type, stop));
+  document.addEventListener('keydown', (e) => {
+    const key = e.key.toLowerCase();
+    if ((e.ctrlKey || e.metaKey) && ['c','x','s','u','p'].includes(key)) e.preventDefault();
+    if ((e.ctrlKey || e.metaKey) && ['+','-','=','0'].includes(key)) e.preventDefault();
   });
-  const io=new IntersectionObserver(entries=>entries.forEach(x=>{if(x.isIntersecting){x.target.classList.add('on');io.unobserve(x.target)}}),{threshold:.12});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-  const bar=document.getElementById('progress');
-  const setProgress=()=>{const h=document.documentElement;const d=h.scrollHeight-h.clientHeight;bar.style.width=(d?Math.min(100,(h.scrollTop/d)*100):0)+'%'};
-  addEventListener('scroll',setProgress,{passive:true});setProgress();
+  document.addEventListener('wheel', (e) => {
+    if (e.ctrlKey) e.preventDefault();
+  }, { passive: false });
+  document.addEventListener('gesturestart', stop, { passive: false });
+  document.addEventListener('dblclick', stop, { passive: false });
 })();
