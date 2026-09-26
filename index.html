@@ -8,6 +8,18 @@
 <meta name="robots" content="index,follow">
 <title>NovaVision GT | Tecnología & Desarrollo</title>
 <link rel="stylesheet" href="assets/styles.css">
+<style id="nv-logo-fix-v52">
+.brand-logo,.brand-wordmark,.core-logo,.footer-logo,.footer-wordmark{display:none!important}
+.brand-logo-img{display:block;width:40px;height:40px;flex:0 0 40px;object-fit:contain;border-radius:12px;filter:drop-shadow(0 0 10px rgba(37,220,255,.26))}
+.brand-official{display:flex;flex-direction:column;justify-content:center;min-width:0}
+.brand-wordmark-img{display:block;width:158px;max-width:34vw;height:auto;object-fit:contain;mix-blend-mode:screen;filter:drop-shadow(0 0 8px rgba(37,220,255,.10))}
+.brand-official small{display:block;margin-top:1px;padding-left:3px;color:#6fe6ff;font-size:6px;font-weight:900;letter-spacing:.14em}
+.core-logo-img{position:absolute;left:50%;top:45%;width:96px;height:96px;transform:translate(-50%,-50%);object-fit:contain;border-radius:24px;filter:drop-shadow(0 0 17px rgba(37,220,255,.30));animation:float 5s ease-in-out infinite;z-index:3}
+.footer-logo-img{display:block;width:34px;height:34px;flex:0 0 34px;object-fit:contain;border-radius:9px;filter:drop-shadow(0 0 8px rgba(37,220,255,.18))}
+.footer-wordmark-img{display:block;width:120px;max-width:34vw;height:auto;object-fit:contain;mix-blend-mode:screen}
+@media(max-width:640px){.brand-logo-img{width:34px;height:34px;flex-basis:34px}.brand-wordmark-img{width:145px;max-width:43vw}.brand-official small{font-size:5.4px;letter-spacing:.11em}.core-logo-img{width:76px;height:76px}.footer-logo-img{width:30px;height:30px;flex-basis:30px}.footer-wordmark-img{width:108px}}
+@media(max-width:390px){.brand-logo-img{width:31px;height:31px;flex-basis:31px}.brand-wordmark-img{width:128px;max-width:41vw}.brand-official small{font-size:5px}.core-logo-img{width:70px;height:70px}}
+</style>
 </head>
 <body>
 <div class="page-progress" id="pageProgress"></div>
@@ -18,9 +30,9 @@
   <div class="shell">
     <nav class="nav" aria-label="Navegación principal">
       <a class="brand" href="#inicio" aria-label="NovaVision GT inicio">
-        <span class="brand-logo" aria-hidden="true"></span>
-        <span class="brand-copy">
-          <strong>NOVAVISION GT</strong>
+        <img class="brand-logo-img" src="assets/logo-v52.jpg" alt="" draggable="false">
+        <span class="brand-official">
+          <img class="brand-wordmark-img" src="assets/wordmark-v52.jpg" alt="NovaVision GT" draggable="false">
           <small>TECNOLOGÍA & DESARROLLO</small>
         </span>
       </a>
@@ -60,7 +72,7 @@
           <div class="orbit orbit-two"></div>
           <div class="orbit orbit-three"></div>
           <div class="core-ring"></div>
-          <div class="core-logo"></div>
+          <img class="core-logo-img" src="assets/logo-v52.jpg" alt="Logo NovaVision GT" draggable="false">
           <div class="module-caption">
             <small>NV // CORE</small>
             <strong>DIGITAL EVOLUTION</strong>
@@ -167,7 +179,10 @@
 
 <footer>
   <div class="shell footer-inner">
-    <div class="footer-brand"><span class="footer-logo"></span><div><strong>NovaVision GT</strong><small>Tecnología & Desarrollo</small></div></div>
+    <div class="footer-brand">
+      <img class="footer-logo-img" src="assets/logo-v52.jpg" alt="" draggable="false">
+      <img class="footer-wordmark-img" src="assets/wordmark-v52.jpg" alt="NovaVision GT" draggable="false">
+    </div>
     <p>© 2026 NovaVision GT</p>
   </div>
 </footer>
